@@ -1,0 +1,130 @@
+﻿<Window x:Class="Notes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Notes"
+        MinWidth="540"
+        Width="1080"
+        MaxWidth="1080"
+        Height="540"
+        MinHeight="540" 
+        MaxHeight="720"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        
+        <Style x:Key="notesListStyle">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red"/>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    
+
+    <Grid Margin="0,0,8,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="20" />
+            <RowDefinition Height="0" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File" Height="35" Width="35" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
+                <MenuItem Command="{Binding ExitCommand}" Header="Exit"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="0" Margin="276,18,276,2" Width="0">
+            <StackPanel Orientation="Horizontal"/>
+        </Grid>
+
+        <ListBox Name="NotesList" 
+                 HorizontalContentAlignment="Stretch"
+                 Margin="10,10,760,24" 
+                 ItemsSource="{Binding Path=NotesArr}" 
+                 Grid.Row="2" 
+                 SelectionChanged="NotesList_SelectionChanged" 
+                 MouseRightButtonUp="NotesList_RightClick"
+                 MouseDoubleClick="NotesList_DoubleClicked" 
+                 Foreground="#FF161719" 
+                 FontSize="14" Background="#FFF1F6F9">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Topic}" />
+                        <TextBlock Grid.Column="1" 
+                                   FontSize="10" 
+                                   Foreground="#FF9B9B9B" 
+                                   Text="{Binding TimeToShow}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>        
+
+        <Grid VerticalAlignment="Bottom" Margin="10,0,0,4" Height="0"/>
+        <StackPanel Height="80" Margin="332,30,608,0" VerticalAlignment="Top" Grid.RowSpan="3">
+            <StackPanel Margin="0,0,-7,0" Orientation="Horizontal" Height="28">
+                <TextBox Validation.ErrorTemplate="{x:Null}" 
+                         x:Name="TextField" 
+                         Margin="10,5,37,5"
+                         Height="0"/>
+            </StackPanel>
+            <Button x:Name="btnCreateNote"
+                        Content="Create"
+                        Background="{x:Null}"
+                        Click="MW_createNote"
+                        
+                        IsEnabled="True" 
+                        Margin="10,0" Height="20"/>
+            <!--<Button x:Name="btnEditNote"
+                        IsEnabled="{Binding SelectedItems.Count, ElementName=NotesList}"
+                        Content="Edit"
+                        Background="{x:Null}"
+                        Click="MW_editNote"  
+                        Margin="10,10,19,0" Height="20" VerticalAlignment="Bottom"/>
+            <Button x:Name="btnDeleteNote"
+                        IsEnabled="{Binding SelectedItems.Count, ElementName=NotesList}"
+                        Content="Delete"
+                        Background="{x:Null}"
+                        Click="MW_deleteNote" 
+                        Height="20" Margin="11,10,19,0"/>-->
+        </StackPanel>
+        <TextBlock x:Name="textBox" 
+                   HorizontalAlignment="Left" 
+                   Height="359" 
+                   Margin="306,75,10,10" 
+                   Grid.Row="2" 
+                   TextWrapping="Wrap" 
+                   Text="{Binding Path=NotesList.SelectedItem.Text}" 
+                   VerticalAlignment="Top" 
+                   Width="745" 
+                   FontSize="20" 
+                   Background="WhiteSmoke"/>
+        <StackPanel Height="80" Margin="858,30,82,0" VerticalAlignment="Top" Grid.RowSpan="3">
+            <StackPanel Margin="0,0,-7,0" Orientation="Horizontal" Height="28">
+            </StackPanel>
+            <Button x:Name="btnDeleteNote"
+        		Content="Delete"
+        		Background="{x:Null}"
+        		Click="MW_deleteNote"
+        		IsEnabled="False" 
+        		Margin="10,0" 
+                Height="20"/>
+            
+        </StackPanel>
+    </Grid>
+</Window>
