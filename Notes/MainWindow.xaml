@@ -62,13 +62,14 @@
                     <Grid Margin="10,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Topic}" />
                         <TextBlock Grid.Column="1" 
                                    FontSize="10" 
-                                   Foreground="#FF9B9B9B" 
-                                   Text="{Binding TimeToShow}"/>
+                                   Foreground="#FF9B9B9B"
+
+                                   Text="{Binding TimeToShow}" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

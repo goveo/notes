@@ -82,7 +82,6 @@ namespace Notes
             this.Text = "Hey, i'm your first note. Double click on me to change me.";
             this.Topic = "Sample topic.";
             this.Time = DateTime.Now;
-            this.TimeToShow = Time.ToString();
         }
 
         public Note(string topic, string text, DateTime time)
@@ -91,12 +90,25 @@ namespace Notes
             this.Topic = topic;
             this.Text = text;
             this.Time = time;
-            this.TimeToShow = time.ToString();
         }
 
         private string GetFormattedNoteTime()
         {
-            return this.time.ToShortTimeString();
+            bool isYesterday = DateTime.Today - time.Date == TimeSpan.FromDays(1);
+            bool isToday = DateTime.Today - time.Date == TimeSpan.FromDays(0);
+
+            if (isToday == true)
+            {
+                return this.time.ToShortTimeString();
+            }
+            else if (isYesterday == true)
+            {
+                return "yesterday " + this.time.ToShortTimeString();
+            }
+            else
+            {
+                return this.time.ToLongDateString();
+            }
         }
     }
 
