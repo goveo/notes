@@ -24,9 +24,11 @@ namespace Notes
         {
             System.Diagnostics.Debug.WriteLine("createNoteClicked");
             if (Topic != null && Text != null)
+            {
                 Topic(TopicField.Text);
                 Text(TextField.Text);
-                this.Close();
+            }
+            this.Close();
         }
         public NoteCreator()
         {

@@ -70,10 +70,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NoteEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NoteCreator.xaml.cs">
       <DependentUpon>NoteCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NoteEditor.xaml.cs">
+      <DependentUpon>NoteEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="NoteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

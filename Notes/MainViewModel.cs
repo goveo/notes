@@ -69,8 +69,8 @@ namespace Notes
 
         public string TextToCreate { get; set; }
         public string TopicToCreate { get; set; }
-
         public string TextToEdit { get; set; }
+        public string TopicToEdit { get; set; }
 
         public MainViewModel()
         {
@@ -146,6 +146,7 @@ namespace Notes
 
             Note newNote = new Note();
             newNote.Text = TextToEdit;
+            newNote.Topic = TopicToEdit;
             NotesArr.CreateNote(newNote, index);
         }
     }

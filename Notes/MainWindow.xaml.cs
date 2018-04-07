@@ -134,6 +134,35 @@ namespace Notes
 
                     Console.WriteLine("Doubleclicked : " + selected.Topic);
 
+
+                    ((MainViewModel)DataContext).TextToEdit = selected.Text;
+                    ((MainViewModel)DataContext).TopicToEdit = selected.Topic;
+
+                    NoteEditor noteEditor = new NoteEditor();
+
+                    noteEditor.TopicField.Text = selected.Topic;
+                    noteEditor.TextField.Text = selected.Text;
+
+                    string text = "";
+                    string topic = "";
+                    noteEditor.NewText += value => text = value;
+                    noteEditor.NewTopic += value => topic = value;
+                    noteEditor.ShowDialog();
+
+                    if (!String.IsNullOrEmpty(text))
+                        ((MainViewModel)DataContext).TextToEdit = text;
+                    else
+                        return;
+                    if (!String.IsNullOrEmpty(topic))
+                        ((MainViewModel)DataContext).TopicToEdit = topic;
+                    else
+                        return;
+
+                    System.Diagnostics.Debug.WriteLine("TEXT FROM DIALOG: === " + text);
+                    System.Diagnostics.Debug.WriteLine("TOPIC FROM DIALOG: === " + topic);
+
+                    ((MainViewModel)DataContext).EditNote((Note)NotesList.SelectedItem);
+
                 }
                 catch (Exception exception)
                 {
