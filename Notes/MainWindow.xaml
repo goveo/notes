@@ -10,7 +10,7 @@
         MaxHeight="720"
         ResizeMode="NoResize">
     <Window.Resources>
-        
+
         <Style x:Key="notesListStyle">
             <Style.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red"/>
@@ -18,7 +18,7 @@
         </Style>
 
     </Window.Resources>
-    
+
 
     <Grid Margin="0,0,8,0">
         <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
 
         <ListBox Name="NotesList" 
                  HorizontalContentAlignment="Stretch"
-                 Margin="10,10,760,24" 
+                 Margin="10,10,760,31" 
                  ItemsSource="{Binding Path=NotesArr}" 
                  Grid.Row="2" 
                  SelectionChanged="NotesList_SelectionChanged" 
@@ -73,8 +73,8 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
-        </ListBox>        
+
+        </ListBox>
 
         <Grid VerticalAlignment="Bottom" Margin="10,0,0,4" Height="0"/>
         <StackPanel Height="80" Margin="332,30,608,0" VerticalAlignment="Top" Grid.RowSpan="3">
@@ -106,8 +106,8 @@
         </StackPanel>
         <TextBlock x:Name="textBox" 
                    HorizontalAlignment="Left" 
-                   Height="359" 
-                   Margin="306,75,10,10" 
+                   Height="354" 
+                   Margin="306,75,0,0" 
                    Grid.Row="2" 
                    TextWrapping="Wrap" 
                    Text="{Binding Path=NotesList.SelectedItem.Text}" 
@@ -125,7 +125,7 @@
         		IsEnabled="False" 
         		Margin="10,0" 
                 Height="20"/>
-            
+
         </StackPanel>
     </Grid>
 </Window>

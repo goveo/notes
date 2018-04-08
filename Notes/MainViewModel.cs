@@ -130,7 +130,7 @@ namespace Notes
             if (TopicToCreate == null)
                 throw new ArgumentException("Topic is null");
 
-            NotesArr.CreateNote(TopicToCreate, TextToCreate, DateTime.Now);
+            NotesArr.CreateNote(TopicToCreate, TextToCreate);
         }
 
         public void DeleteNote(object NoteObj)
@@ -144,9 +144,8 @@ namespace Notes
             int index = NotesArr.GetNoteIndex(oldNote);
             NotesArr.RemoveNote(oldNote);
 
-            Note newNote = new Note();
-            newNote.Text = TextToEdit;
-            newNote.Topic = TopicToEdit;
+            Note newNote = new Note(TopicToEdit, TextToEdit);
+            newNote.setEdited();
             NotesArr.CreateNote(newNote, index);
         }
     }

@@ -10,12 +10,23 @@ using System.Threading.Tasks;
 namespace Notes
 {
     [Serializable]
+    public enum NoteState
+    {
+        CREATED,
+        EDITED,
+        DELETED
+    }
+
+    [Serializable]
     public class Note
     {
         public string text;
         public string topic;
         public DateTime time;
         public string timeToShow;
+
+        public NoteState State { get; set; }
+
 
         public string Text
         {
@@ -82,14 +93,24 @@ namespace Notes
             this.Text = "Hey, i'm your first note. Double click on me to change me.";
             this.Topic = "Sample topic.";
             this.Time = DateTime.Now;
+            this.State = NoteState.CREATED;
         }
 
-        public Note(string topic, string text, DateTime time)
+        public Note(string topic, string text)
             : this()
         {
             this.Topic = topic;
             this.Text = text;
-            this.Time = time;
+            this.Time = DateTime.Now;
+            this.State = NoteState.CREATED;
+        }
+
+        public void setEdited()
+        {
+            if (State == NoteState.CREATED)
+            {
+                State = NoteState.EDITED;
+            }
         }
 
         private string GetFormattedNoteTime()
@@ -97,18 +118,25 @@ namespace Notes
             bool isYesterday = DateTime.Today - time.Date == TimeSpan.FromDays(1);
             bool isToday = DateTime.Today - time.Date == TimeSpan.FromDays(0);
 
+            string result = "";
             if (isToday == true)
             {
-                return this.time.ToShortTimeString();
+                result = this.time.ToShortTimeString();
             }
             else if (isYesterday == true)
             {
-                return "yesterday " + this.time.ToShortTimeString();
+                result = "yesterday " + this.time.ToShortTimeString();
             }
             else
             {
-                return this.time.ToLongDateString();
+                result = this.time.ToLongDateString();
             }
+            if (this.State == NoteState.EDITED)
+            {
+                result = "edited " + result;
+            }
+            
+            return result;
         }
     }
 
@@ -155,9 +183,9 @@ namespace Notes
             Insert(index, Note);
         }
 
-        public void CreateNote(string topic, string text, DateTime time)
+        public void CreateNote(string topic, string text)
         {
-            Note NoteObj = new Note(topic, text, time);
+            Note NoteObj = new Note(topic, text);
             Add(NoteObj);
             Console.WriteLine("number of Notes: " + this.Count);
         }

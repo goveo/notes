@@ -21,21 +21,9 @@ namespace Notes
         public MainWindow()
         {
             InitializeComponent();
-
             DataContext = new MainViewModel();
-
-            //TextField.TextChanged += TextBoxOnChange;
         }
-        
-        private void TextBoxOnChange(object sender, EventArgs eventArgs)
-        {
-            System.Diagnostics.Debug.WriteLine("TextBoxOnChanged");
-            System.Diagnostics.Debug.WriteLine("TextField : " + TextField.Text);
 
-            //textBox.Text = TextField.Text;
-            
-            //checkCreateFields();
-        }
         public void MW_createNote(object sender, RoutedEventArgs e)
         {
             NoteCreator noteCreator = new NoteCreator();
@@ -50,8 +38,7 @@ namespace Notes
 
             System.Diagnostics.Debug.WriteLine("TOPIC FROM DIALOG: === " + topic);
             System.Diagnostics.Debug.WriteLine("TEXT FROM DIALOG: === " + text);
-
-            //TextField.Text = text;
+            
         }
 
         public void MW_deleteNote(object sender, RoutedEventArgs e)
@@ -69,24 +56,6 @@ namespace Notes
             }
         }
 
-        //public void MW_editNote(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        ((MainViewModel)DataContext).TextToEdit = TextField.Text;
-
-        //        // Call function foro editing.
-        //        ((MainViewModel)DataContext).EditNote((Note)NotesList.SelectedItem);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        if (exception is FormatException || exception is OverflowException)
-        //        {
-        //            btnEditNote.IsEnabled = false;
-        //        }
-        //    }
-        //}
-
         private void NotesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (NotesList.SelectedIndex == -1)
@@ -101,7 +70,10 @@ namespace Notes
                     btnDeleteNote.IsEnabled = true;
                     ((MainViewModel)DataContext).TextToCreate = selected.Text;
                     textBox.Text = selected.Text;
-                    Console.WriteLine("selected: " + selected.Time.ToString() + selected.Text);
+                    Console.WriteLine("selected.selected.Text : {0} " + selected.Text);
+                    Console.WriteLine("selected.selected.Topic : {0} " + selected.Topic);
+                    Console.WriteLine("selected.selected.State : {0} " + selected.State);
+                    Console.WriteLine("selected.selected.Time : {0} " + selected.Time.ToString());
                     Console.WriteLine("selected.TimeToShow : {0}", selected.TimeToShow);
 
                 }
@@ -119,19 +91,13 @@ namespace Notes
         {
             if (NotesList.SelectedIndex == -1)
             {
-                //btnEditNote.IsEnabled = false;
-                //btnDeleteNote.IsEnabled = false;
+                btnDeleteNote.IsEnabled = false;
             }
             else
             {
                 Note selected = (Note)NotesList.SelectedItem;
                 try
                 {
-                    //btnEditNote.IsEnabled = true;
-                    //btnDeleteNote.IsEnabled = true;
-                    //((MainViewModel)DataContext).TextToCreate = selected.Text;
-                    //TextField.Text = selected.Text;
-
                     Console.WriteLine("Doubleclicked : " + selected.Topic);
 
 
