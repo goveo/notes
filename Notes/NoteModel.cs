@@ -168,26 +168,26 @@ namespace Notes
             Console.WriteLine(this.Items);
         }
 
-        public int GetNoteIndex(Note Note)
+        public int GetNoteIndex(Note note)
         {
-            return IndexOf(Note);
+            return IndexOf(note);
         }
 
-        public void RemoveNote(Note Note)
+        public void RemoveNote(Note note)
         {
-            Remove(Note);
+            Remove(note);
         }
 
-        public void CreateNote(Note Note, int index)
+        public void CreateNote(Note note)
         {
-            Insert(index, Note);
+            Insert(0, note);
         }
 
         public void CreateNote(string topic, string text)
         {
-            Note NoteObj = new Note(topic, text);
-            Add(NoteObj);
-            Console.WriteLine("number of Notes: " + this.Count);
+            Note note = new Note(topic, text);
+            Insert(0, note);
+            Console.WriteLine("number of notes: " + this.Count);
         }
 
         public void SaveNote()

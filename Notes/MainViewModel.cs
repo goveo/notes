@@ -126,9 +126,13 @@ namespace Notes
         {
             Console.WriteLine("CheckAndInvokeCommand");
             if (TextToCreate == null)
+            {
                 throw new ArgumentException("Text is null");
+            }
             if (TopicToCreate == null)
+            {
                 throw new ArgumentException("Topic is null");
+            }
 
             NotesArr.CreateNote(TopicToCreate, TextToCreate);
         }
@@ -141,12 +145,11 @@ namespace Notes
         public void EditNote(object NoteObj)
         {
             Note oldNote = (Note)NoteObj;
-            int index = NotesArr.GetNoteIndex(oldNote);
             NotesArr.RemoveNote(oldNote);
 
             Note newNote = new Note(TopicToEdit, TextToEdit);
             newNote.setEdited();
-            NotesArr.CreateNote(newNote, index);
+            NotesArr.CreateNote(newNote);
         }
     }
 }

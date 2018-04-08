@@ -68,7 +68,6 @@
                         <TextBlock Grid.Column="1" 
                                    FontSize="10" 
                                    Foreground="#FF9B9B9B"
-
                                    Text="{Binding TimeToShow}" HorizontalAlignment="Right"/>
                     </Grid>
                 </DataTemplate>
@@ -88,24 +87,11 @@
                         Content="Create"
                         Background="{x:Null}"
                         Click="MW_createNote"
-                        
                         IsEnabled="True" 
                         Margin="10,0" Height="20"/>
-            <!--<Button x:Name="btnEditNote"
-                        IsEnabled="{Binding SelectedItems.Count, ElementName=NotesList}"
-                        Content="Edit"
-                        Background="{x:Null}"
-                        Click="MW_editNote"  
-                        Margin="10,10,19,0" Height="20" VerticalAlignment="Bottom"/>
-            <Button x:Name="btnDeleteNote"
-                        IsEnabled="{Binding SelectedItems.Count, ElementName=NotesList}"
-                        Content="Delete"
-                        Background="{x:Null}"
-                        Click="MW_deleteNote" 
-                        Height="20" Margin="11,10,19,0"/>-->
         </StackPanel>
         <TextBlock x:Name="textBox" 
-                   HorizontalAlignment="Left" 
+                   HorizontalAlignment="Stretch" 
                    Height="354" 
                    Margin="306,75,0,0" 
                    Grid.Row="2" 

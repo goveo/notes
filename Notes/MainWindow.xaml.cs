@@ -116,14 +116,21 @@ namespace Notes
                     noteEditor.ShowDialog();
 
                     if (!String.IsNullOrEmpty(text))
+                    {
                         ((MainViewModel)DataContext).TextToEdit = text;
+                    }
                     else
+                    {
                         return;
+                    }
                     if (!String.IsNullOrEmpty(topic))
+                    {
                         ((MainViewModel)DataContext).TopicToEdit = topic;
+                    }
                     else
+                    {
                         return;
-
+                    }
                     System.Diagnostics.Debug.WriteLine("TEXT FROM DIALOG: === " + text);
                     System.Diagnostics.Debug.WriteLine("TOPIC FROM DIALOG: === " + topic);
 
