@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Notes
+namespace Notes.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
@@ -116,7 +117,6 @@ namespace Notes
                 if (null == createNote)
                 {
                     createNote = new DelegateCommand(CheckAndInvokeCommand, CanExecuteCommandTrue);
-
                 }
                 return createNote;
             }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Notes.Models;
+using Notes.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Notes
+namespace Notes.Views
 {
 
     public partial class MainWindow : Window
@@ -21,6 +23,7 @@ namespace Notes
         public MainWindow()
         {
             InitializeComponent();
+
             DataContext = new MainViewModel();
         }
 
@@ -60,14 +63,14 @@ namespace Notes
         {
             if (NotesList.SelectedIndex == -1)
             {
-                btnDeleteNote.IsEnabled = false;
+                deleteButton.IsEnabled = false;
             }
             else
             {
                 Note selected = (Note)NotesList.SelectedItem;
                 try
                 {
-                    btnDeleteNote.IsEnabled = true;
+                    deleteButton.IsEnabled = true;
                     ((MainViewModel)DataContext).TextToCreate = selected.Text;
                     textBox.Text = selected.Text;
                     Console.WriteLine("selected.selected.Text : {0} " + selected.Text);
@@ -81,7 +84,7 @@ namespace Notes
                 {
                     if (exception is FormatException || exception is OverflowException)
                     {
-                        btnDeleteNote.IsEnabled = false;
+                        deleteButton.IsEnabled = false;
                     }
                 }
             }
@@ -91,7 +94,7 @@ namespace Notes
         {
             if (NotesList.SelectedIndex == -1)
             {
-                btnDeleteNote.IsEnabled = false;
+                deleteButton.IsEnabled = false;
             }
             else
             {
@@ -147,6 +150,28 @@ namespace Notes
         private void NotesList_RightClick(object sender, MouseEventArgs e)
         {
             Console.WriteLine("Right click");
+        }
+
+        private void setImportant_Click(object sender, EventArgs e)
+        {
+            if (NotesList.SelectedIndex == -1)
+            {
+                deleteButton.IsEnabled = false;
+            }
+            else
+            {
+                Note selected = (Note)NotesList.SelectedItem;
+                try
+                {
+                    Console.WriteLine("setImportant_Click");
+                    //selected = new ImportantNote(selected);
+
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.ToString());
+                }
+            }
         }
 
     }

@@ -7,16 +7,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notes
+namespace Notes.Models
 {
-    [Serializable]
-    public enum NoteState
-    {
-        CREATED,
-        EDITED,
-        DELETED
-    }
-
     [Serializable]
     public class Note
     {
@@ -24,8 +16,9 @@ namespace Notes
         public string topic;
         public DateTime time;
         public string timeToShow;
-
+        
         public NoteState State { get; set; }
+
 
 
         public string Text
@@ -97,7 +90,6 @@ namespace Notes
         }
 
         public Note(string topic, string text)
-            : this()
         {
             this.Topic = topic;
             this.Text = text;
@@ -135,11 +127,11 @@ namespace Notes
             {
                 result = "edited " + result;
             }
-            
+
             return result;
         }
-    }
 
+    }
 
     public class NoteModel : ObservableCollection<Note>
     {
@@ -198,7 +190,7 @@ namespace Notes
         // Serialization.
         public static void SerializeNotes(Note[] NoteArr)
         {
-            FileStream fs = new FileStream("Notes.dat", FileMode.Create);
+            FileStream fs = new FileStream("savednotes.dat", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, NoteArr);
             fs.Close();
@@ -210,7 +202,7 @@ namespace Notes
             Note[] NoteBuf;
             try
             {
-                FileStream fs = new FileStream("Notes.dat", FileMode.Open);
+                FileStream fs = new FileStream("savednotes.dat", FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
                 NoteBuf = (Note[])bf.Deserialize(fs);
 
@@ -218,7 +210,10 @@ namespace Notes
             }
             catch (Exception e)
             {
-                NoteBuf = new Note[] { new Note(), };
+                NoteBuf = new Note[] 
+                {
+                    new Note()
+                };
             }
 
             return NoteBuf;
