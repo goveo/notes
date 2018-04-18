@@ -19,8 +19,6 @@ namespace Notes.Models
         
         public NoteState State { get; set; }
 
-
-
         public string Text
         {
             get
@@ -182,7 +180,7 @@ namespace Notes.Models
             Console.WriteLine("number of notes: " + this.Count);
         }
 
-        public void SaveNote()
+        public void SaveNotes()
         {
             SerializeNotes(Current.ToArray());
         }

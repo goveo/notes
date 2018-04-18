@@ -10,21 +10,6 @@ using System.Windows.Input;
 
 namespace Notes.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs args) {
-            if (PropertyChanged != null)
-                PropertyChanged(this, args);
-        }
-    }
-
     public class DelegateCommand : ICommand
     {
         public delegate void ICommandOnExecute(object parameter);
@@ -62,9 +47,10 @@ namespace Notes.ViewModels
         }
     }
 
-    class MainViewModel : ViewModelBase
+    class MainViewModel : BaseViewModel
     {
         private DelegateCommand exitCommand;
+        private ICommand createNote;
 
         public NoteModel NotesArr { get; set; }
 
@@ -93,11 +79,10 @@ namespace Notes.ViewModels
 
         private void Exit(object parameter)
         {
-            // Save data before an exit.
             MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Save confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                NotesArr.SaveNote();
+                NotesArr.SaveNotes();
             }
 
             Application.Current.Shutdown();
@@ -108,7 +93,6 @@ namespace Notes.ViewModels
             return true;
         }
 
-        private ICommand createNote;
         public ICommand CreateNote
         {
             get
@@ -135,21 +119,24 @@ namespace Notes.ViewModels
             }
 
             NotesArr.CreateNote(TopicToCreate, TextToCreate);
+            NotesArr.SaveNotes();
         }
 
         public void DeleteNote(object NoteObj)
         {
             NotesArr.Remove((Note)NoteObj);
+            NotesArr.SaveNotes();
         }
 
         public void EditNote(object NoteObj)
         {
             Note oldNote = (Note)NoteObj;
             NotesArr.RemoveNote(oldNote);
-
+            
             Note newNote = new Note(TopicToEdit, TextToEdit);
             newNote.setEdited();
             NotesArr.CreateNote(newNote);
+            NotesArr.SaveNotes();
         }
     }
 }
