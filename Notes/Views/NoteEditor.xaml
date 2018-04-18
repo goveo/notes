@@ -13,13 +13,14 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,0,10">
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="449,145,0,0" VerticalAlignment="Top" Width="75" Command="{Binding EditNote}" Click="editNoteClicked"/>
+        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="449,145,0,0" VerticalAlignment="Top" Width="75" Command="{Binding EditNote}" Click="editNoteClicked"/>
         <StackPanel Height="96" Margin="30,25,20,0" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" Height="28">
                 <TextBlock Style="{StaticResource LabelStyle}" Text="Title:  " Height="18" Margin="0,5" Width="30"/>
 
                 <TextBox Validation.ErrorTemplate="{x:Null}" 
         			x:Name="TopicField" 
+                    TextChanged="TitleChanged"
         			Margin="10,5,37,5"
         			Text="{Binding TopicToEdit, Mode=OneWayToSource}" Height="18" Width="442"/>
             </StackPanel>
@@ -27,6 +28,7 @@
                 <TextBlock Style="{StaticResource LabelStyle}" Height="18" Margin="0" Text="Text:  "/>
                 <TextBox Validation.ErrorTemplate="{x:Null}" 
             		x:Name="TextField" 
+                    TextChanged="TextChanged"
             		Margin="10,0,37,0"
             		Text="{Binding TextToEdit, Mode=OneWayToSource}" Width="442"/>
             </StackPanel>
