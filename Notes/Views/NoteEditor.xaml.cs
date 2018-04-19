@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace Notes.Views
         public event Action<string> NewText;
         public event Action<string> NewTopic;
 
+        public static string Topic { get; set; }
+        public static string Text { get; set; }
+
         ButtonChecker buttonChecker;
         public SmartEditButton Button { get; set; }
 
@@ -37,10 +41,10 @@ namespace Notes.Views
         {
             InitializeComponent();
 
-            Button.realButton = EditButton;
-            Button.realButton.IsEnabled = false;
+            //Button.realButton = EditButton;
+            //Button.realButton.IsEnabled = false;
 
-            buttonChecker = new ButtonChecker(TopicField.Text, TextField.Text);
+            buttonChecker = new ButtonChecker();
         }
 
         public class SmartEditButton
@@ -51,49 +55,48 @@ namespace Notes.Views
         //interface
         interface IButtonEnabler
         {
-            void EnableButton(SmartEditButton button);
+            void EnableButton(Button button);
         }
 
         //realsubject
         class ButtonEnabler : IButtonEnabler
         {
-            public void EnableButton(SmartEditButton button)
+            public void EnableButton(Button button)
             {
-                button.isEnabled = true;
+                button.IsEnabled = true;
             }
         }
 
         //proxy
         class ButtonChecker : IButtonEnabler
         {
-            string topic;
-            string description;
-            public ButtonChecker(string topic, string description)
-            {
-                this.topic = topic;
-                this.description = description;
-            }
             ButtonEnabler btnEnabler = new ButtonEnabler();
-            public void EnableButton(SmartEditButton smartButton)
+
+            public void EnableButton(Button button)
             {
-                if (topic != null && description != null)
+                if (!String.IsNullOrEmpty(Topic) && !String.IsNullOrEmpty(Text))
                 {
-                    btnEnabler.EnableButton(smartButton);
+                    btnEnabler.EnableButton(button);
+                    Debug.WriteLine("Button enabled");
                 } 
                 else
                 {
-                    smartButton.realButton.IsEnabled = false;
+                    button.IsEnabled = false;
                 }
             }
         }
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {
-            buttonChecker.EnableButton(Button);
+            Topic = ((TextBox)sender).Text;
+            buttonChecker.EnableButton(EditButton);
+            Debug.WriteLine("Topic : " + Topic);
         }
         private void TitleChanged(object sender, RoutedEventArgs e)
         {
-            buttonChecker.EnableButton(Button);
+            Text = ((TextBox)sender).Text;
+            buttonChecker.EnableButton(EditButton);
+            Debug.WriteLine("Text : " + Text);
         }
 
     }
