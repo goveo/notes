@@ -64,7 +64,20 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Topic}" />
+                        
+                        <TextBlock Text="{Binding Topic}">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsImportant}" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        
                         <TextBlock Grid.Column="1" 
                                    FontSize="10" 
                                    Foreground="#FF9B9B9B"
@@ -93,7 +106,7 @@
             <Button x:Name="createButton"
                         Content="Create"
                         Background="{x:Null}"
-                        Click="MW_createNote"
+                        Click="CreateNote"
                         IsEnabled="True" 
                         Margin="10,0" Height="20"/>
         </StackPanel>
@@ -114,7 +127,7 @@
             <Button x:Name="deleteButton"
         		Content="Delete"
         		Background="{x:Null}"
-        		Click="MW_deleteNote"
+        		Click="DeleteNote"
         		IsEnabled="False" 
         		Margin="10,0" 
                 Height="20"/>

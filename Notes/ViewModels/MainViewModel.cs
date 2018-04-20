@@ -56,6 +56,7 @@ namespace Notes.ViewModels
 
         public string TextToCreate { get; set; }
         public string TopicToCreate { get; set; }
+        public string IsImportantToCreate { get; set; }
         public string TextToEdit { get; set; }
         public string TopicToEdit { get; set; }
 
@@ -108,6 +109,7 @@ namespace Notes.ViewModels
 
         public void CheckAndInvokeCommand(object parameter)
         {
+            bool isImportnat;
             Console.WriteLine("CheckAndInvokeCommand");
             if (TextToCreate == null)
             {
@@ -117,8 +119,20 @@ namespace Notes.ViewModels
             {
                 throw new ArgumentException("Topic is null");
             }
-
-            NotesArr.CreateNote(TopicToCreate, TextToCreate);
+            //if (IsImportantToCreate == null)
+            //{
+            //    throw new ArgumentException("IsImportant is null");
+            //}
+            Console.WriteLine("IsImportantToCreate : " + IsImportantToCreate);
+            if (IsImportantToCreate == "important")
+            {
+                isImportnat = true;
+            }
+            else
+            {
+                isImportnat = true;
+            }
+            NotesArr.CreateNote(TopicToCreate, TextToCreate, isImportnat);
             NotesArr.SaveNotes();
         }
 
@@ -131,9 +145,10 @@ namespace Notes.ViewModels
         public void EditNote(object NoteObj)
         {
             Note oldNote = (Note)NoteObj;
+            bool isImportant = oldNote.IsImportant;
             NotesArr.RemoveNote(oldNote);
             
-            Note newNote = new Note(TopicToEdit, TextToEdit);
+            Note newNote = new Note(TopicToEdit, TextToEdit, isImportant);
             newNote.setEdited();
             NotesArr.CreateNote(newNote);
             NotesArr.SaveNotes();

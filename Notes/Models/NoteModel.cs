@@ -18,6 +18,7 @@ namespace Notes.Models
         public string timeToShow;
         
         public NoteState State { get; set; }
+        public bool IsImportant { get; set; }
 
         public string Text
         {
@@ -85,14 +86,19 @@ namespace Notes.Models
             this.Topic = "Sample topic.";
             this.Time = DateTime.Now;
             this.State = NoteState.CREATED;
+            this.IsImportant = false;
         }
 
-        public Note(string topic, string text)
+        public Note(string topic, string text, bool isImportant)
         {
+            Console.WriteLine("Note CONSTRUCTOR ========================================= isImportant : " + isImportant);
+            Console.WriteLine("Note CONSTRUCTOR ========================================= topic : " + topic);
+            Console.WriteLine("Note CONSTRUCTOR ========================================= text : " + text);
             this.Topic = topic;
             this.Text = text;
             this.Time = DateTime.Now;
             this.State = NoteState.CREATED;
+            this.IsImportant = isImportant;
         }
 
         public void setEdited()
@@ -173,9 +179,9 @@ namespace Notes.Models
             Insert(0, note);
         }
 
-        public void CreateNote(string topic, string text)
+        public void CreateNote(string topic, string text, bool isImportant)
         {
-            Note note = new Note(topic, text);
+            Note note = new Note(topic, text, isImportant);
             Insert(0, note);
             Console.WriteLine("number of notes: " + this.Count);
         }

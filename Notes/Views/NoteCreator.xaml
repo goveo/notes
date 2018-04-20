@@ -21,15 +21,18 @@
                 <TextBox Validation.ErrorTemplate="{x:Null}" 
         			x:Name="TopicField" 
         			Margin="10,5,37,5"
+                    TextChanged="TitleChanged"
         			Text="{Binding TopicToCreate, Mode=OneWayToSource}" Height="18" Width="442"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="67">
                 <TextBlock Style="{StaticResource LabelStyle}" Height="18" Margin="0" Text="Text:  "/>
                 <TextBox Validation.ErrorTemplate="{x:Null}" 
             		x:Name="TextField" 
+                    TextChanged="TextChanged"
             		Margin="10,0,37,0"
             		Text="{Binding TextToCreate, Mode=OneWayToSource}" Width="442"/>
             </StackPanel>
         </StackPanel>
+        <CheckBox x:Name="ImportantCheckBox" Content="Important" HorizontalAlignment="Left" Margin="47,133,0,0" VerticalAlignment="Top" Checked="Important_Checked"/>
     </Grid>
 </Window>

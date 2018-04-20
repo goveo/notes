@@ -24,41 +24,29 @@ namespace Notes.Views
         public static string Text { get; set; }
 
         ButtonChecker buttonChecker;
-        public SmartEditButton Button { get; set; }
 
         public void editNoteClicked(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("editNoteClicked");
-
-            //if (NewText != null && NewTopic != null)
-            //{
+            
             NewTopic(TopicField.Text);
             NewText(TextField.Text);
-            //}
             this.Close();
         }
         public NoteEditor()
         {
             InitializeComponent();
-
-            //Button.realButton = EditButton;
-            //Button.realButton.IsEnabled = false;
-
+            
             buttonChecker = new ButtonChecker();
         }
 
-        public class SmartEditButton
-        {
-            public Button realButton;
-            public bool isEnabled;
-        }
-        //interface
+        //Proxy
+
         interface IButtonEnabler
         {
             void EnableButton(Button button);
         }
-
-        //realsubject
+        
         class ButtonEnabler : IButtonEnabler
         {
             public void EnableButton(Button button)
@@ -66,8 +54,7 @@ namespace Notes.Views
                 button.IsEnabled = true;
             }
         }
-
-        //proxy
+        
         class ButtonChecker : IButtonEnabler
         {
             ButtonEnabler btnEnabler = new ButtonEnabler();
@@ -85,6 +72,7 @@ namespace Notes.Views
                 }
             }
         }
+        //Proxy ends
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {

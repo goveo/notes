@@ -27,24 +27,31 @@ namespace Notes.Views
             DataContext = new MainViewModel();
         }
 
-        public void MW_createNote(object sender, RoutedEventArgs e)
+        public void CreateNote(object sender, RoutedEventArgs e)
         {
             NoteCreator noteCreator = new NoteCreator();
             string topic = "";
             string text = "";
-            noteCreator.Topic += value => topic = value;
-            noteCreator.Text += value => text = value;
+            string isImportant = "";
+            noteCreator.TopicAction += value => topic = value;
+            noteCreator.TextAction += value => text = value;
+            noteCreator.IsImportantAction += value => isImportant = value;
             noteCreator.ShowDialog();
 
             ((MainViewModel)DataContext).TopicToCreate = topic;
             ((MainViewModel)DataContext).TextToCreate = text;
+            ((MainViewModel)DataContext).IsImportantToCreate = isImportant;
 
             System.Diagnostics.Debug.WriteLine("TOPIC FROM DIALOG: === " + topic);
             System.Diagnostics.Debug.WriteLine("TEXT FROM DIALOG: === " + text);
-            
+            System.Diagnostics.Debug.WriteLine("isImportant FROM DIALOG: === " + isImportant);
+
+            System.Diagnostics.Debug.WriteLine("TopicToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).TopicToCreate);
+            System.Diagnostics.Debug.WriteLine("TextToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).TextToCreate);
+            System.Diagnostics.Debug.WriteLine("IsImportantToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).IsImportantToCreate);
         }
 
-        public void MW_deleteNote(object sender, RoutedEventArgs e)
+        public void DeleteNote(object sender, RoutedEventArgs e)
         {
             string messageBoxText = "Are you sure?";
             string caption = "Delete Note?";
@@ -73,11 +80,12 @@ namespace Notes.Views
                     deleteButton.IsEnabled = true;
                     ((MainViewModel)DataContext).TextToCreate = selected.Text;
                     textBox.Text = selected.Text;
-                    Console.WriteLine("selected.selected.Text : {0} " + selected.Text);
-                    Console.WriteLine("selected.selected.Topic : {0} " + selected.Topic);
-                    Console.WriteLine("selected.selected.State : {0} " + selected.State);
-                    Console.WriteLine("selected.selected.Time : {0} " + selected.Time.ToString());
+                    Console.WriteLine("selected.selected.Text : {0} ", selected.Text);
+                    Console.WriteLine("selected.selected.Topic : {0} ", selected.Topic);
+                    Console.WriteLine("selected.selected.State : {0} ", selected.State);
+                    Console.WriteLine("selected.selected.Time : {0} ", selected.Time.ToString());
                     Console.WriteLine("selected.TimeToShow : {0}", selected.TimeToShow);
+                    Console.WriteLine("selected.IsImportant : {0}", selected.IsImportant);
 
                 }
                 catch (Exception exception)
