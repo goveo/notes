@@ -33,6 +33,10 @@
             		Text="{Binding TextToCreate, Mode=OneWayToSource}" Width="442"/>
             </StackPanel>
         </StackPanel>
-        <CheckBox x:Name="ImportantCheckBox" Content="Important" HorizontalAlignment="Left" Margin="47,133,0,0" VerticalAlignment="Top" Checked="Important_Checked"/>
+        <CheckBox x:Name="ImportantCheckBox" IsChecked="{Binding IsImportantToCreate}" 
+                  Content="Important" 
+                  HorizontalAlignment="Left" 
+                  Margin="47,133,0,0" 
+                  VerticalAlignment="Top"/>
     </Grid>
 </Window>

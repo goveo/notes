@@ -20,7 +20,7 @@ namespace Notes.Views
     {
         public event Action<string> TopicAction;
         public event Action<string> TextAction;
-        public event Action<string> IsImportantAction;
+        public event Action<bool> IsImportantAction;
 
         public static string TopicFieldText { get; set; }
         public static string TextFieldText { get; set; }
@@ -110,9 +110,9 @@ namespace Notes.Views
         {
             private Action<string> topic;
             private Action<string> text;
-            private Action<string> isImportant;
+            private Action<bool> isImportant;
 
-            public ImportantImplementation(Action<string> topic, Action<string> text, Action<string> isImportant)
+            public ImportantImplementation(Action<string> topic, Action<string> text, Action<bool> isImportant)
             {
                 this.topic = topic;
                 this.text = text;
@@ -126,7 +126,7 @@ namespace Notes.Views
                 {
                     topic(TopicFieldText);
                     text(TextFieldText);
-                    isImportant("important");
+                    isImportant(true);
                 }
             }
         }

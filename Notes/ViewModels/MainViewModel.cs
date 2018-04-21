@@ -52,17 +52,17 @@ namespace Notes.ViewModels
         private DelegateCommand exitCommand;
         private ICommand createNote;
 
-        public NoteModel NotesArr { get; set; }
+        public NotesModel NotesArr { get; set; }
 
         public string TextToCreate { get; set; }
         public string TopicToCreate { get; set; }
-        public string IsImportantToCreate { get; set; }
+        public bool IsImportantToCreate { get; set; }
         public string TextToEdit { get; set; }
         public string TopicToEdit { get; set; }
 
         public MainViewModel()
         {
-            this.NotesArr = NoteModel.Current;
+            this.NotesArr = NotesModel.Current;
         }
 
         public ICommand ExitCommand
@@ -109,7 +109,6 @@ namespace Notes.ViewModels
 
         public void CheckAndInvokeCommand(object parameter)
         {
-            bool isImportnat;
             Console.WriteLine("CheckAndInvokeCommand");
             if (TextToCreate == null)
             {
@@ -119,20 +118,7 @@ namespace Notes.ViewModels
             {
                 throw new ArgumentException("Topic is null");
             }
-            //if (IsImportantToCreate == null)
-            //{
-            //    throw new ArgumentException("IsImportant is null");
-            //}
-            Console.WriteLine("IsImportantToCreate : " + IsImportantToCreate);
-            if (IsImportantToCreate == "important")
-            {
-                isImportnat = true;
-            }
-            else
-            {
-                isImportnat = true;
-            }
-            NotesArr.CreateNote(TopicToCreate, TextToCreate, isImportnat);
+            NotesArr.CreateNote(TopicToCreate, TextToCreate, IsImportantToCreate);
             NotesArr.SaveNotes();
         }
 

@@ -32,7 +32,7 @@ namespace Notes.Views
             NoteCreator noteCreator = new NoteCreator();
             string topic = "";
             string text = "";
-            string isImportant = "";
+            bool isImportant = false;
             noteCreator.TopicAction += value => topic = value;
             noteCreator.TextAction += value => text = value;
             noteCreator.IsImportantAction += value => isImportant = value;
