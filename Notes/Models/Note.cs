@@ -77,10 +77,25 @@ namespace Notes.Models
             }
         }
 
+        public string InfoToShow
+        {
+            get
+            {
+                return this.GetFormattedNoteTime();
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    this.timeToShow = value;
+                }
+            }
+        }
+
         public Note()
         {
-            this.Text = "Hey, i'm your first note. Double click on me to change me.";
-            this.Topic = "Sample topic.";
+            this.Topic = "Sample topic";
+            this.Text = "Sample text";
             this.Time = DateTime.Now;
             this.State = NoteState.CREATED;
             this.IsImportant = false;
@@ -133,4 +148,20 @@ namespace Notes.Models
         }
 
     }
+
+    //abstract public class Decorator : Note
+    //{
+    //    protected Note Note;
+    //    public void SetNote(Note baseNote)
+    //    {
+    //        this.Note = baseNote;
+    //    }
+    //}
+    //public class DeadlineDecorator : Decorator
+    //{
+    //    public void SetDeadline()
+    //    {
+    //        Console.Write("Setted deadline");
+    //    }
+    //}
 }

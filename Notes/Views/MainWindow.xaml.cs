@@ -53,15 +53,20 @@ namespace Notes.Views
 
         public void DeleteNote(object sender, RoutedEventArgs e)
         {
-            string messageBoxText = "Are you sure?";
-            string caption = "Delete Note?";
-            MessageBoxButton button = MessageBoxButton.YesNo;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-
-            if (result == MessageBoxResult.Yes)
+            Note selected = (Note)NotesList.SelectedItem;
+            if (selected.IsImportant)
             {
-                ((MainViewModel)DataContext).DeleteNote((Note)NotesList.SelectedItem);
+                MessageBoxResult result = MessageBox.Show("Are you sure?", "Delete Note?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    ((MainViewModel)DataContext).DeleteNote(selected);
+                    textBox.Text = "";
+                }
+            }
+            else
+            {
+                ((MainViewModel)DataContext).DeleteNote(selected);
                 textBox.Text = "";
             }
         }

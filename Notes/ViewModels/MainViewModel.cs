@@ -50,6 +50,7 @@ namespace Notes.ViewModels
     class MainViewModel : BaseViewModel
     {
         private DelegateCommand exitCommand;
+        private DelegateCommand deleteAllNotesCommand;
         private ICommand createNote;
 
         public NotesModel NotesArr { get; set; }
@@ -78,15 +79,42 @@ namespace Notes.ViewModels
             }
         }
 
+        public ICommand DeleteAllNotesCommand
+        {
+            get
+            {
+                Console.WriteLine("get ICommand DeleteAllNotesCommand");
+                if (null == deleteAllNotesCommand)
+                {
+                    deleteAllNotesCommand = new DelegateCommand(DeleteAllNotes, CanExecuteCommandTrue);
+                }
+
+
+                return deleteAllNotesCommand;
+            }
+        }
+
         private void Exit(object parameter)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Save confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                NotesArr.SaveNotes();
-            }
+            //MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Save confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    NotesArr.SaveNotes();
+            //}
 
             Application.Current.Shutdown();
+        }
+
+        private void DeleteAllNotes(object parameter)
+        {
+            Console.WriteLine("DeleteAllNotes");
+            MessageBoxResult result = MessageBox.Show("Delete all notes?", "Are your sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                NotesArr.DeleteAllNotes();
+            }
+
+            //Application.Current.Shutdown();
         }
 
         public bool CanExecuteCommandTrue(object parameter)
