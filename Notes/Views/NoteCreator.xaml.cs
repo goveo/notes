@@ -21,6 +21,7 @@ namespace Notes.Views
         public event Action<string> TopicAction;
         public event Action<string> TextAction;
         public event Action<bool> IsImportantAction;
+        public event Action<DateTime> DeadlineAction;
 
         public static string TopicFieldText { get; set; }
         public static string TextFieldText { get; set; }
@@ -29,6 +30,7 @@ namespace Notes.Views
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            DeadlinePicker.Text = DateTime.Now.ToLongDateString();
         }
 
         public void createNoteClicked(object sender, RoutedEventArgs e)
@@ -46,6 +48,25 @@ namespace Notes.Views
                 actionSender.Implementor = new NotImportantImplementation(TopicAction, TextAction);
             }
             actionSender.SendNoteInfo();
+
+            DateTime deadline = new DateTime();
+            try
+            {
+                deadline = (DateTime)DeadlinePicker.Value;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (deadline < DateTime.Now)
+            {
+                Console.WriteLine("Deadline is in the past, and is not been setted");
+                
+            }
+            else
+            {
+                DeadlineAction(deadline);
+            }
 
             this.Close();
         }

@@ -29,26 +29,34 @@ namespace Notes.Views
 
         public void CreateNote(object sender, RoutedEventArgs e)
         {
+            //((MainViewModel)DataContext).DeadlineToCreate = 
             NoteCreator noteCreator = new NoteCreator();
+            noteCreator.DeadlinePicker.Value = DateTime.Now;
             string topic = "";
             string text = "";
             bool isImportant = false;
+            DateTime deadline = new DateTime();
+
             noteCreator.TopicAction += value => topic = value;
             noteCreator.TextAction += value => text = value;
             noteCreator.IsImportantAction += value => isImportant = value;
+            noteCreator.DeadlineAction += value => deadline = value;
             noteCreator.ShowDialog();
 
             ((MainViewModel)DataContext).TopicToCreate = topic;
             ((MainViewModel)DataContext).TextToCreate = text;
             ((MainViewModel)DataContext).IsImportantToCreate = isImportant;
+            ((MainViewModel)DataContext).DeadlineToCreate = deadline;
 
             System.Diagnostics.Debug.WriteLine("TOPIC FROM DIALOG: === " + topic);
             System.Diagnostics.Debug.WriteLine("TEXT FROM DIALOG: === " + text);
             System.Diagnostics.Debug.WriteLine("isImportant FROM DIALOG: === " + isImportant);
+            System.Diagnostics.Debug.WriteLine("deadline FROM DIALOG: === " + deadline);
 
             System.Diagnostics.Debug.WriteLine("TopicToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).TopicToCreate);
             System.Diagnostics.Debug.WriteLine("TextToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).TextToCreate);
             System.Diagnostics.Debug.WriteLine("IsImportantToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).IsImportantToCreate);
+            System.Diagnostics.Debug.WriteLine("DeadlineToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).DeadlineToCreate);
         }
 
         public void DeleteNote(object sender, RoutedEventArgs e)
@@ -178,7 +186,6 @@ namespace Notes.Views
                 {
                     Console.WriteLine("setImportant_Click");
                     //selected = new ImportantNote(selected);
-
                 }
                 catch (Exception exception)
                 {

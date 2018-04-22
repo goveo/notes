@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Notes.Models
 {
     [Serializable]
-    public class Note
+    abstract public class Note
     {
         public string text;
         public string topic;
@@ -77,21 +77,6 @@ namespace Notes.Models
             }
         }
 
-        public string InfoToShow
-        {
-            get
-            {
-                return this.GetFormattedNoteTime();
-            }
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
-                    this.timeToShow = value;
-                }
-            }
-        }
-
         public Note()
         {
             this.Topic = "Sample topic";
@@ -113,6 +98,7 @@ namespace Notes.Models
             this.IsImportant = isImportant;
         }
 
+        //state
         public void setEdited()
         {
             if (State == NoteState.CREATED)
@@ -121,31 +107,7 @@ namespace Notes.Models
             }
         }
 
-        private string GetFormattedNoteTime()
-        {
-            bool isYesterday = DateTime.Today - time.Date == TimeSpan.FromDays(1);
-            bool isToday = DateTime.Today - time.Date == TimeSpan.FromDays(0);
-
-            string result = "";
-            if (isToday == true)
-            {
-                result = this.time.ToShortTimeString();
-            }
-            else if (isYesterday == true)
-            {
-                result = "yesterday " + this.time.ToShortTimeString();
-            }
-            else
-            {
-                result = this.time.ToLongDateString();
-            }
-            if (this.State == NoteState.EDITED)
-            {
-                result = "edited " + result;
-            }
-
-            return result;
-        }
+        public abstract string GetFormattedNoteTime();
 
     }
 

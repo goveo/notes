@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 
 namespace Notes.Models
 {
@@ -13,6 +13,10 @@ namespace Notes.Models
     {
         private static object _threadLock = new Object();
         private static NotesModel current = null;
+        private NoteCreator deadlinedNoteCreator = new DeadlinedNoteCreator();
+        private NoteCreator defaultNoteCreator = new DefaultNoteCreator();
+
+        public delegate void SavedDelegate(Note note);
 
         public static NotesModel Current
         {
@@ -46,16 +50,19 @@ namespace Notes.Models
             Remove(note);
         }
 
-        public void CreateNote(Note note)
+        public void CreateNote(string topic, string text, bool isImportant, DateTime deadline)
         {
-            Insert(0, note);
-        }
-
-        public void CreateNote(string topic, string text, bool isImportant)
-        {
-            Note note = new Note(topic, text, isImportant);
-            Insert(0, note);
-            Console.WriteLine("number of notes: " + this.Count);
+            Console.WriteLine("created note with deadline param");
+            if (deadline == null || deadline < DateTime.Now)
+            {
+                Note note = defaultNoteCreator.Create(topic, text, isImportant, deadline);
+                Current.Insert(0, note);
+            } 
+            else
+            {
+                Note note = deadlinedNoteCreator.Create(topic, text, isImportant, deadline);
+                Current.Insert(0, note);
+            }
         }
 
         public void SaveNotes()
@@ -88,20 +95,20 @@ namespace Notes.Models
             {
                 NoteBuf = new Note[] 
                 {
-                    new Note()
+                    new DefaultNote()
                 };
             }
 
             return NoteBuf;
         }
 
+        // Chain of responsibility
         public void DeleteAllNotes()
         {
 
             DeleteHandler h1 = new DeleteImportantHandler();
             DeleteHandler h2 = new DeleteDefaultHandler();
             h1.SetSuccessor(h2);
-            //h2.SetSuccessor(h1);
 
             Console.WriteLine(this.Count);
             foreach (Note note in new System.Collections.ArrayList(this))
@@ -110,7 +117,7 @@ namespace Notes.Models
             }
             Console.WriteLine(this.Count);
         }
-
+        
         abstract class DeleteHandler
         {
             protected DeleteHandler successor;
@@ -153,6 +160,34 @@ namespace Notes.Models
                 }
             }
         }
+        // Chain of responsibility end
+
+        // Factory Method
+        abstract class NoteCreator
+        {
+            public abstract Note Create(string topic, string text, bool isImportant, DateTime deadline);
+        }
+
+        class DeadlinedNoteCreator : NoteCreator
+        {
+            public override Note Create(string topic, string text, bool isImportant, DateTime deadline)
+            {
+                Console.WriteLine("DeadlinedNoteCreator");
+                return new DeadlinedNote(topic, text, isImportant, deadline);
+            }
+        }
+
+        class DefaultNoteCreator : NoteCreator
+        {
+            public override Note Create(string topic, string text, bool isImportant, DateTime deadline)
+            {
+                Console.WriteLine("DefaultNoteCreator");
+                return new DefaultNote(topic, text, isImportant);
+            }
+        }
+
+        // Factory Method end
+
     }
-    
+
 }

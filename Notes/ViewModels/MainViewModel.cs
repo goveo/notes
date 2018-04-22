@@ -58,6 +58,8 @@ namespace Notes.ViewModels
         public string TextToCreate { get; set; }
         public string TopicToCreate { get; set; }
         public bool IsImportantToCreate { get; set; }
+        public DateTime DeadlineToCreate { get; set; }
+
         public string TextToEdit { get; set; }
         public string TopicToEdit { get; set; }
 
@@ -96,12 +98,7 @@ namespace Notes.ViewModels
 
         private void Exit(object parameter)
         {
-            //MessageBoxResult result = MessageBox.Show("Do you want to save changes?", "Save confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //if (result == MessageBoxResult.Yes)
-            //{
-            //    NotesArr.SaveNotes();
-            //}
-
+            NotesArr.SaveNotes();
             Application.Current.Shutdown();
         }
 
@@ -114,7 +111,6 @@ namespace Notes.ViewModels
                 NotesArr.DeleteAllNotes();
             }
 
-            //Application.Current.Shutdown();
         }
 
         public bool CanExecuteCommandTrue(object parameter)
@@ -146,7 +142,9 @@ namespace Notes.ViewModels
             {
                 throw new ArgumentException("Topic is null");
             }
-            NotesArr.CreateNote(TopicToCreate, TextToCreate, IsImportantToCreate);
+ 
+            NotesArr.CreateNote(TopicToCreate, TextToCreate, IsImportantToCreate, DeadlineToCreate);
+           
             NotesArr.SaveNotes();
         }
 
@@ -160,12 +158,20 @@ namespace Notes.ViewModels
         {
             Note oldNote = (Note)NoteObj;
             bool isImportant = oldNote.IsImportant;
+            DateTime deadline = new DateTime();
+            try
+            {
+                DeadlinedNote note = (DeadlinedNote)NoteObj;
+                deadline = note.Deadline;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             NotesArr.RemoveNote(oldNote);
-            
-            Note newNote = new Note(TopicToEdit, TextToEdit, isImportant);
-            newNote.setEdited();
-            NotesArr.CreateNote(newNote);
-            NotesArr.SaveNotes();
+            NotesArr.CreateNote(TopicToEdit, TextToEdit, isImportant, deadline);
+            NotesArr[0].setEdited();
         }
     }
 }
