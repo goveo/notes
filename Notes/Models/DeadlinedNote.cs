@@ -62,5 +62,10 @@ namespace Notes.Models
 
             return result;
         }
+
+        public void Accept(IVisitor visitor)
+        {
+            visitor.VisitDeadlinedNote(this);
+        }
     }
 }

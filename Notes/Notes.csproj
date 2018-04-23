@@ -84,6 +84,8 @@
     </Compile>
     <Compile Include="Models\DeadlinedNote.cs" />
     <Compile Include="Models\DefaultNote.cs" />
+    <Compile Include="Models\DetailInfoVisitor.cs" />
+    <Compile Include="Models\IVisitor.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NoteState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
