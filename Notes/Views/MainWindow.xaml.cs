@@ -172,12 +172,7 @@ namespace Notes.Views
             }
         }
 
-        private void NotesList_RightClick(object sender, MouseEventArgs e)
-        {
-            Console.WriteLine("Right click");
-        }
-
-        private void setImportant_Click(object sender, EventArgs e)
+        private void setToUppercase_Click(object sender, EventArgs e)
         {
             if (NotesList.SelectedIndex == -1)
             {
@@ -188,8 +183,14 @@ namespace Notes.Views
                 Note selected = (Note)NotesList.SelectedItem;
                 try
                 {
-                    Console.WriteLine("setImportant_Click");
-                    //selected = new ImportantNote(selected);
+                    NoteDecorator ToUppercase = new UppercaseDecorator();
+                    ToUppercase.SetDecoratorOn(selected);
+                    ToUppercase.SetTopic(selected.Topic);
+
+                    ((MainViewModel)DataContext).TextToEdit = selected.Text;
+                    ((MainViewModel)DataContext).TopicToEdit = selected.Topic;
+                    ((MainViewModel)DataContext).EditNote(selected);
+
                 }
                 catch (Exception exception)
                 {
@@ -197,6 +198,5 @@ namespace Notes.Views
                 }
             }
         }
-
     }
 }

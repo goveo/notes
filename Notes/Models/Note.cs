@@ -9,13 +9,13 @@ namespace Notes.Models
     [Serializable]
     abstract public class Note
     {
-        public string text;
-        public string topic;
-        public DateTime time;
-        public string timeToShow;
-        private string detailInfo;
+        protected string text;
+        protected string topic;
+        protected DateTime time;
+        protected string timeToShow;
+        protected string detailInfo;
 
-        public NoteState State { get; set; }
+        public INoteState State { get; set; }
         public bool IsImportant { get; set; }
 
         public string Text
@@ -43,7 +43,8 @@ namespace Notes.Models
             {
                 if (!String.IsNullOrEmpty(value))
                 {
-                    this.topic = value;
+                    //this.topic = value;
+                    SetTopic(value);
                 }
             }
         }
@@ -98,7 +99,7 @@ namespace Notes.Models
             this.Topic = "Sample topic";
             this.Text = "Sample text";
             this.Time = DateTime.Now;
-            this.State = NoteState.CREATED;
+            this.State = new CreatedNoteState();
             this.IsImportant = false;
         }
 
@@ -110,36 +111,26 @@ namespace Notes.Models
             this.Topic = topic;
             this.Text = text;
             this.Time = DateTime.Now;
-            this.State = NoteState.CREATED;
+            this.State = new CreatedNoteState();
             this.IsImportant = isImportant;
         }
 
         //state
         public void setEdited()
         {
-            if (State == NoteState.CREATED)
-            {
-                State = NoteState.EDITED;
-            }
+            State = new EditedNoteState();
         }
 
-        public abstract string GetFormattedNoteTime();
+        public virtual string GetFormattedNoteTime()
+        {
+            return State.GetFormattedNoteTime(this);
+        }
+
+        public virtual void SetTopic(string topic)
+        {
+            Console.WriteLine("SetTopic : " + topic);
+            this.topic = topic;
+        }
 
     }
-
-    //abstract public class Decorator : Note
-    //{
-    //    protected Note Note;
-    //    public void SetNote(Note baseNote)
-    //    {
-    //        this.Note = baseNote;
-    //    }
-    //}
-    //public class DeadlineDecorator : Decorator
-    //{
-    //    public void SetDeadline()
-    //    {
-    //        Console.Write("Setted deadline");
-    //    }
-    //}
 }

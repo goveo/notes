@@ -17,33 +17,33 @@ namespace Notes.Models
         {
         }
 
-        public override string GetFormattedNoteTime()
-        {
-            bool isYesterday = DateTime.Today - time.Date == TimeSpan.FromDays(1);
-            bool isToday = DateTime.Today - time.Date == TimeSpan.FromDays(0);
+        //public override string GetFormattedNoteTime()
+        //{
+        //    bool isYesterday = DateTime.Today - time.Date == TimeSpan.FromDays(1);
+        //    bool isToday = DateTime.Today - time.Date == TimeSpan.FromDays(0);
 
-            string result = "";
-            if (isToday == true)
-            {
-                result = this.time.ToShortTimeString();
-            }
-            else if (isYesterday == true)
-            {
-                result = "yesterday " + this.time.ToShortTimeString();
-            }
-            else
-            {
-                result = this.time.ToShortDateString();
-            }
-            if (this.State == NoteState.EDITED)
-            {
-                result = "edited " + result;
-            }
+        //    string result = "";
+        //    if (isToday == true)
+        //    {
+        //        result = this.time.ToShortTimeString();
+        //    }
+        //    else if (isYesterday == true)
+        //    {
+        //        result = "yesterday " + this.time.ToShortTimeString();
+        //    }
+        //    else
+        //    {
+        //        result = this.time.ToShortDateString();
+        //    }
+        //    if (this.State == NoteState.EDITED)
+        //    {
+        //        result = "edited " + result;
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public void Accept(IVisitor visitor)
+        public void SetDetailInfo(IVisitor visitor)
         {
             this.DetailInfo = visitor.VisitDefaultNote(this);
         }

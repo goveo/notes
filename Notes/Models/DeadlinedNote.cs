@@ -34,36 +34,23 @@ namespace Notes.Models
             this.deadline = deadline;
         }
 
-        public override string GetFormattedNoteTime()
-        {
-            bool isToday = deadline.Date - DateTime.Today == TimeSpan.FromDays(0);
+        //public override string GetFormattedNoteTime()
+        //{
+        //    bool isToday = deadline.Date - DateTime.Today == TimeSpan.FromDays(0);
 
-            string result = "deadline ";
-            if (isToday == true)
-            {
-                result =  result + this.deadline.ToShortTimeString();
-            }
-            else
-            {
-                result = result + this.deadline.ToShortDateString();
-            }
-            //else if (isYesterday == true)
-            //{
-            //    result = "yesterday " + this.time.ToShortTimeString();
-            //}
-            //else
-            //{
-            //    result = this.time.ToLongDateString();
-            //}
-            //if (this.State == NoteState.EDITED)
-            //{
-            //    result = "edited " + result;
-            //}
+        //    string result = "deadline ";
+        //    if (isToday == true)
+        //    {
+        //        result =  result + this.deadline.ToShortTimeString();
+        //    }
+        //    else
+        //    {
+        //        result = result + this.deadline.ToShortDateString();
+        //    }
+        //    return result;
+        //}
 
-            return result;
-        }
-
-        public void Accept(IVisitor visitor)
+        public void SetDetailInfo(IVisitor visitor)
         {
             this.DetailInfo = visitor.VisitDeadlinedNote(this);
         }

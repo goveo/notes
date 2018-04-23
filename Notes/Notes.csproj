@@ -82,12 +82,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Bridge\AbstractActionSender.cs" />
+    <Compile Include="Models\Bridge\ActionSender.cs" />
+    <Compile Include="Models\Bridge\Implementor.cs" />
+    <Compile Include="Models\Bridge\ImportantImplementation.cs" />
+    <Compile Include="Models\Bridge\NotImportantImplementation.cs" />
+    <Compile Include="Models\Chain Of Responsibility\DeleteHandler.cs" />
     <Compile Include="Models\DeadlinedNote.cs" />
+    <Compile Include="Models\Decorator\NoteDecorator.cs" />
+    <Compile Include="Models\Decorator\UppercaseDecorator.cs" />
     <Compile Include="Models\DefaultNote.cs" />
-    <Compile Include="Models\DetailInfoVisitor.cs" />
-    <Compile Include="Models\IVisitor.cs" />
+    <Compile Include="Models\Factory Method\DeadlinedNoteCreator.cs" />
+    <Compile Include="Models\Factory Method\DefaultNoteCreator.cs" />
+    <Compile Include="Models\Factory Method\NoteCreator.cs" />
+    <Compile Include="Models\Proxy\ButtonEnabler.cs" />
+    <Compile Include="Models\Proxy\IButtonEnabler.cs" />
+    <Compile Include="Models\State\CreatedNoteState.cs" />
+    <Compile Include="Models\State\EditedNoteState.cs" />
+    <Compile Include="Models\State\INoteState.cs" />
+    <Compile Include="Models\Visitor\DetailInfoVisitor.cs" />
+    <Compile Include="Models\Visitor\IVisitor.cs" />
     <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\NoteState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

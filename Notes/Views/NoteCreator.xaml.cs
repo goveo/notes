@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Notes.Models;
+
 namespace Notes.Views
 {
 
@@ -40,7 +42,7 @@ namespace Notes.Views
 
         public void createNoteClicked(object sender, RoutedEventArgs e)
         {
-            AbstractSender actionSender = new ActionSender();
+            AbstractActionSender actionSender = new ActionSender();
 
             if (ImportantCheckBox.IsChecked == true)
             {
@@ -52,7 +54,7 @@ namespace Notes.Views
                 Console.WriteLine("not important note");
                 actionSender.Implementor = new NotImportantImplementation(TopicAction, TextAction);
             }
-            actionSender.SendNoteInfo();
+            actionSender.SendNoteInfo(TopicFieldText, TextFieldText);
 
             DateTime deadline = new DateTime();
             try
@@ -81,82 +83,6 @@ namespace Notes.Views
             Console.WriteLine("Checked");
         }
 
-        // Bridge 
-        class AbstractSender
-        {
-            protected Implementor implementor;
-            
-            public Implementor Implementor
-            {
-                set { implementor = value; }
-            }
-
-            public virtual void SendNoteInfo()
-            {
-                implementor.SendNoteInfo();
-            }
-        }
-
-        abstract class Implementor
-        {
-            public abstract void SendNoteInfo();
-        }
-
-        class ActionSender : AbstractSender
-        {
-            public override void SendNoteInfo()
-            {
-                implementor.SendNoteInfo();
-            }
-        }
-
-        class NotImportantImplementation : Implementor
-        {
-            private Action<string> topic;
-            private Action<string> text;
-
-            public NotImportantImplementation(Action<string> topic, Action<string> text)
-            {
-                this.topic = topic;
-                this.text = text;
-            }
-
-            public override void SendNoteInfo()
-            {
-                Console.WriteLine("SendNoteInfo Not Important");
-                if (topic != null && text != null)
-                {
-                    topic(TopicFieldText);
-                    text(TextFieldText);
-                }
-            }
-        }
-
-        class ImportantImplementation : Implementor
-        {
-            private Action<string> topic;
-            private Action<string> text;
-            private Action<bool> isImportant;
-
-            public ImportantImplementation(Action<string> topic, Action<string> text, Action<bool> isImportant)
-            {
-                this.topic = topic;
-                this.text = text;
-                this.isImportant = isImportant;
-            }
-
-            public override void SendNoteInfo()
-            {
-                Console.WriteLine("SendNoteInfo Important");
-                if (topic != null && text != null && isImportant != null)
-                {
-                    topic(TopicFieldText);
-                    text(TextFieldText);
-                    isImportant(true);
-                }
-            }
-        }
-        // Bridge ends
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {

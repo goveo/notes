@@ -57,13 +57,15 @@ namespace Notes.Models
             {
                 DefaultNote note = (DefaultNote)defaultNoteCreator.Create(topic, text, isImportant, deadline);
                 Current.Insert(0, note);
-                note.Accept(new DetailInfoVisitor());
+                //visitor
+                note.SetDetailInfo(new DetailInfoVisitor());
             } 
             else
             {
                 DeadlinedNote note = (DeadlinedNote)deadlinedNoteCreator.Create(topic, text, isImportant, deadline);
                 Current.Insert(0, note);
-                note.Accept(new DetailInfoVisitor());
+                //visitor
+                note.SetDetailInfo(new DetailInfoVisitor());
             }
         }
 
@@ -71,8 +73,7 @@ namespace Notes.Models
         {
             SerializeNotes(Current.ToArray());
         }
-
-        // Serialization.
+        
         public static void SerializeNotes(Note[] NoteArr)
         {
             FileStream fs = new FileStream("savednotes.dat", FileMode.Create);
@@ -80,8 +81,7 @@ namespace Notes.Models
             bf.Serialize(fs, NoteArr);
             fs.Close();
         }
-
-        // Deserialization.
+        
         public static Note[] DeserializeNotes()
         {
             Note[] NoteBuf;
@@ -107,7 +107,6 @@ namespace Notes.Models
         // Chain of responsibility
         public void DeleteAllNotes()
         {
-
             DeleteHandler h1 = new DeleteImportantHandler();
             DeleteHandler h2 = new DeleteDefaultHandler();
             h1.SetSuccessor(h2);
@@ -119,21 +118,8 @@ namespace Notes.Models
             }
             Console.WriteLine(this.Count);
         }
-        
-        abstract class DeleteHandler
-        {
-            protected DeleteHandler successor;
 
-            public void SetSuccessor(DeleteHandler successor)
-            {
-                this.successor = successor;
-            }
-
-            public abstract void Delete(Note note);
-        }
-
-
-        class DeleteImportantHandler : DeleteHandler
+        public class DeleteImportantHandler : DeleteHandler
         {
             public override void Delete(Note note)
             {
@@ -148,7 +134,7 @@ namespace Notes.Models
             }
         }
 
-        class DeleteDefaultHandler : DeleteHandler
+        public class DeleteDefaultHandler : DeleteHandler
         {
             public override void Delete(Note note)
             {
@@ -163,32 +149,6 @@ namespace Notes.Models
             }
         }
         // Chain of responsibility end
-
-        // Factory Method
-        abstract class NoteCreator
-        {
-            public abstract Note Create(string topic, string text, bool isImportant, DateTime deadline);
-        }
-
-        class DeadlinedNoteCreator : NoteCreator
-        {
-            public override Note Create(string topic, string text, bool isImportant, DateTime deadline)
-            {
-                Console.WriteLine("DeadlinedNoteCreator");
-                return new DeadlinedNote(topic, text, isImportant, deadline);
-            }
-        }
-
-        class DefaultNoteCreator : NoteCreator
-        {
-            public override Note Create(string topic, string text, bool isImportant, DateTime deadline)
-            {
-                Console.WriteLine("DefaultNoteCreator");
-                return new DefaultNote(topic, text, isImportant);
-            }
-        }
-
-        // Factory Method end
 
     }
 

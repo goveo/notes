@@ -42,8 +42,7 @@
                  Margin="10,59,760,31" 
                  ItemsSource="{Binding Path=NotesArr}" 
                  Grid.Row="2" 
-                 SelectionChanged="NotesList_SelectionChanged" 
-                 MouseRightButtonUp="NotesList_RightClick"
+                 SelectionChanged="NotesList_SelectionChanged"
                  MouseDoubleClick="NotesList_DoubleClicked" 
                  Foreground="#FF161719" 
                  FontSize="14" Background="#FFF1F6F9">
@@ -88,9 +87,9 @@
             </ListBox.ItemTemplate>
             <ListBox.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Set as important"
-                              x:Name="setImportant"
-                              Click="setImportant_Click">
+                    <MenuItem Header="Set topic to UPPERCASE"
+                              x:Name="setToUppercase"
+                              Click="setToUppercase_Click">
                     </MenuItem>
                 </ContextMenu>
             </ListBox.ContextMenu>

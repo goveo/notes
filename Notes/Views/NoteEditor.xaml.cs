@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Notes.Views
 
         public void editNoteClicked(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("editNoteClicked");
+            Console.WriteLine("editNoteClicked");
             
             NewTopic(TopicField.Text);
             NewText(TextField.Text);
@@ -40,22 +41,8 @@ namespace Notes.Views
             buttonChecker = new ButtonChecker();
         }
 
-        //Proxy
-
-        interface IButtonEnabler
-        {
-            void EnableButton(Button button);
-        }
-        
-        class ButtonEnabler : IButtonEnabler
-        {
-            public void EnableButton(Button button)
-            {
-                button.IsEnabled = true;
-            }
-        }
-        
-        class ButtonChecker : IButtonEnabler
+        // Proxy
+        public class ButtonChecker : IButtonEnabler
         {
             ButtonEnabler btnEnabler = new ButtonEnabler();
 
@@ -64,27 +51,27 @@ namespace Notes.Views
                 if (!String.IsNullOrEmpty(Topic) && !String.IsNullOrEmpty(Text))
                 {
                     btnEnabler.EnableButton(button);
-                    Debug.WriteLine("Button enabled");
-                } 
+                    Console.WriteLine("Button enabled");
+                }
                 else
                 {
                     button.IsEnabled = false;
                 }
             }
         }
-        //Proxy ends
+        // Proxy
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {
             Topic = ((TextBox)sender).Text;
             buttonChecker.EnableButton(EditButton);
-            Debug.WriteLine("Topic : " + Topic);
+            Console.WriteLine("Topic : " + Topic);
         }
         private void TitleChanged(object sender, RoutedEventArgs e)
         {
             Text = ((TextBox)sender).Text;
             buttonChecker.EnableButton(EditButton);
-            Debug.WriteLine("Text : " + Text);
+            Console.WriteLine("Text : " + Text);
         }
 
     }
