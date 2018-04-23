@@ -45,7 +45,7 @@ namespace Notes.Models
 
         public void Accept(IVisitor visitor)
         {
-            visitor.VisitDefaultNote(this);
+            this.DetailInfo = visitor.VisitDefaultNote(this);
         }
     }
 }

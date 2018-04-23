@@ -55,13 +55,15 @@ namespace Notes.Models
             Console.WriteLine("created note with deadline param");
             if (deadline == null || deadline < DateTime.Now)
             {
-                Note note = defaultNoteCreator.Create(topic, text, isImportant, deadline);
+                DefaultNote note = (DefaultNote)defaultNoteCreator.Create(topic, text, isImportant, deadline);
                 Current.Insert(0, note);
+                note.Accept(new DetailInfoVisitor());
             } 
             else
             {
-                Note note = deadlinedNoteCreator.Create(topic, text, isImportant, deadline);
+                DeadlinedNote note = (DeadlinedNote)deadlinedNoteCreator.Create(topic, text, isImportant, deadline);
                 Current.Insert(0, note);
+                note.Accept(new DetailInfoVisitor());
             }
         }
 

@@ -65,7 +65,7 @@ namespace Notes.Models
 
         public void Accept(IVisitor visitor)
         {
-            visitor.VisitDeadlinedNote(this);
+            this.DetailInfo = visitor.VisitDeadlinedNote(this);
         }
     }
 }

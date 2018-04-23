@@ -13,6 +13,7 @@ namespace Notes.Models
         public string topic;
         public DateTime time;
         public string timeToShow;
+        private string detailInfo;
 
         public NoteState State { get; set; }
         public bool IsImportant { get; set; }
@@ -73,6 +74,21 @@ namespace Notes.Models
                 if (!String.IsNullOrEmpty(value))
                 {
                     this.timeToShow = value;
+                }
+            }
+        }
+
+        public string DetailInfo
+        {
+            get
+            {
+                return detailInfo;
+            }
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    this.detailInfo = value;
                 }
             }
         }

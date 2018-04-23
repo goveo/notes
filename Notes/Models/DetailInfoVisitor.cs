@@ -10,21 +10,14 @@ namespace Notes.Models
     {
         public string VisitDefaultNote(DefaultNote note)
         {
-            //string result = "<table><tr><td>Свойство<td><td>Значение</td></tr>";
-            //result += "<tr><td>Name<td><td>" + acc.Name + "</td></tr>";
-            //result += "<tr><td>Number<td><td>" + acc.Number + "</td></tr></table>";
-            //Console.WriteLine(result);
-            return "";
+            Console.WriteLine("=====================VisitDefaultNote");
+            return "DefaultNote info";
         }
 
         public string VisitDeadlinedNote(DeadlinedNote note)
         {
-            //string result = "<table><tr><td>Свойство<td><td>Значение</td></tr>";
-            //result += "<tr><td>Name<td><td>" + acc.Name + "</td></tr>";
-            //result += "<tr><td>RegNumber<td><td>" + acc.RegNumber + "</td></tr>";
-            //result += "<tr><td>Number<td><td>" + acc.Number + "</td></tr></table>";
-            //Console.WriteLine(result);
-            return "";
+            Console.WriteLine("=====================VisitDeadlinedNote");
+            return "VisitDeadlinedNote info";
         }
     }
 }

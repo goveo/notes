@@ -90,6 +90,12 @@ namespace Notes.Views
                 Note selected = (Note)NotesList.SelectedItem;
                 try
                 {
+                    //if (typeof(DefaultNote) == selected.GetType())
+                    //{
+                    //    DefaultNote note = (DefaultNote)selected;
+                        
+                    //}
+                    
                     deleteButton.IsEnabled = true;
                     ((MainViewModel)DataContext).TextToCreate = selected.Text;
                     textBox.Text = selected.Text;
@@ -99,6 +105,7 @@ namespace Notes.Views
                     Console.WriteLine("selected.selected.Time : {0} ", selected.Time.ToString());
                     Console.WriteLine("selected.TimeToShow : {0}", selected.TimeToShow);
                     Console.WriteLine("selected.IsImportant : {0}", selected.IsImportant);
+                    Console.WriteLine("selected.DetailInfo : {0}", selected.DetailInfo);
 
                 }
                 catch (Exception exception)
