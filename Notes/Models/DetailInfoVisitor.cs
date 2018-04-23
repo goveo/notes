@@ -10,14 +10,12 @@ namespace Notes.Models
     {
         public string VisitDefaultNote(DefaultNote note)
         {
-            string result = "created: " + note.Time.ToShortDateString();
-            return result;
+            return "created: " + note.Time.ToString();
         }
 
         public string VisitDeadlinedNote(DeadlinedNote note)
         {
-            string result = "created: " + note.Time.ToShortDateString() + "\n deadline: " + note.Deadline.ToShortDateString();
-            return result;
+            return "created: " + note.Time.ToShortDateString() + " deadline: " + note.Deadline.ToShortDateString();
         }
     }
 }

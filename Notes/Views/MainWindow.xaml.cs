@@ -29,9 +29,10 @@ namespace Notes.Views
 
         public void CreateNote(object sender, RoutedEventArgs e)
         {
-            //((MainViewModel)DataContext).DeadlineToCreate = 
+            ((MainViewModel)DataContext).DeadlineToCreate = DateTime.Today;
             NoteCreator noteCreator = new NoteCreator();
-            noteCreator.DeadlinePicker.Value = DateTime.Now;
+            noteCreator.DeadlinePicker.SelectedDate = DateTime.Today;
+
             string topic = "";
             string text = "";
             bool isImportant = false;
@@ -69,15 +70,14 @@ namespace Notes.Views
                 if (result == MessageBoxResult.Yes)
                 {
                     ((MainViewModel)DataContext).DeleteNote(selected);
-                    textBox.Text = "";
-                    infoBox.Content = "";
                 }
             }
             else
             {
                 ((MainViewModel)DataContext).DeleteNote(selected);
-                textBox.Text = "";
             }
+            textBox.Text = "";
+            infoBox.Content = "";
         }
 
         private void NotesList_SelectionChanged(object sender, SelectionChangedEventArgs e)

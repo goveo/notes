@@ -30,7 +30,12 @@ namespace Notes.Views
         {
             InitializeComponent();
             DataContext = new MainViewModel();
-            DeadlinePicker.Text = DateTime.Now.ToLongDateString();
+            DeadlinePicker.Text = DateTime.Today.ToShortDateString();
+            DeadlinePicker.SelectedDate = DateTime.Today;
+            
+
+            Console.WriteLine("DeadlinePicker.Text : " + DeadlinePicker.Text);
+            Console.WriteLine("DeadlinePicker.SelectedDate : " + DeadlinePicker.SelectedDate);
         }
 
         public void createNoteClicked(object sender, RoutedEventArgs e)
@@ -52,13 +57,13 @@ namespace Notes.Views
             DateTime deadline = new DateTime();
             try
             {
-                deadline = (DateTime)DeadlinePicker.Value;
+                deadline = (DateTime)DeadlinePicker.SelectedDate;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            if (deadline < DateTime.Now)
+            if (deadline < DateTime.Today)
             {
                 Console.WriteLine("Deadline is in the past, and is not been setted");
                 
