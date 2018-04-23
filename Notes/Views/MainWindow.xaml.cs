@@ -70,6 +70,7 @@ namespace Notes.Views
                 {
                     ((MainViewModel)DataContext).DeleteNote(selected);
                     textBox.Text = "";
+                    infoBox.Content = "";
                 }
             }
             else
@@ -89,16 +90,12 @@ namespace Notes.Views
             {
                 Note selected = (Note)NotesList.SelectedItem;
                 try
-                {
-                    //if (typeof(DefaultNote) == selected.GetType())
-                    //{
-                    //    DefaultNote note = (DefaultNote)selected;
-                        
-                    //}
-                    
+                {                    
                     deleteButton.IsEnabled = true;
                     ((MainViewModel)DataContext).TextToCreate = selected.Text;
                     textBox.Text = selected.Text;
+                    infoBox.Content = selected.DetailInfo;
+
                     Console.WriteLine("selected.selected.Text : {0} ", selected.Text);
                     Console.WriteLine("selected.selected.Topic : {0} ", selected.Topic);
                     Console.WriteLine("selected.selected.State : {0} ", selected.State);
