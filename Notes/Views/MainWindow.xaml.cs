@@ -58,6 +58,8 @@ namespace Notes.Views
             System.Diagnostics.Debug.WriteLine("TextToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).TextToCreate);
             System.Diagnostics.Debug.WriteLine("IsImportantToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).IsImportantToCreate);
             System.Diagnostics.Debug.WriteLine("DeadlineToCreate FROM DIALOG: === " + ((MainViewModel)DataContext).DeadlineToCreate);
+
+            ((MainViewModel)DataContext).CreateNote((Note)NotesList.SelectedItem);
         }
 
         public void DeleteNote(object sender, RoutedEventArgs e)

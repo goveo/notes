@@ -68,7 +68,6 @@ namespace Notes.Views
             if (deadline < DateTime.Today)
             {
                 Console.WriteLine("Deadline is in the past, and is not been setted");
-                
             }
             else
             {

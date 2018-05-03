@@ -51,7 +51,6 @@ namespace Notes.ViewModels
     {
         private DelegateCommand exitCommand;
         private DelegateCommand deleteAllNotesCommand;
-        private ICommand createNote;
 
         public NotesModel NotesArr { get; set; }
 
@@ -66,6 +65,11 @@ namespace Notes.ViewModels
         public MainViewModel()
         {
             this.NotesArr = NotesModel.Current;
+        }
+
+        public bool CanExecuteCommandTrue(object parameter)
+        {
+            return true;
         }
 
         public ICommand ExitCommand
@@ -113,25 +117,21 @@ namespace Notes.ViewModels
 
         }
 
-        public bool CanExecuteCommandTrue(object parameter)
-        {
-            return true;
-        }
 
-        public ICommand CreateNote
-        {
-            get
-            {
-                Console.WriteLine("CreateNote ICommand");
-                if (null == createNote)
-                {
-                    createNote = new DelegateCommand(CheckAndInvokeCommand, CanExecuteCommandTrue);
-                }
-                return createNote;
-            }
-        }
+        //public ICommand CreateNote
+        //{
+        //    get
+        //    {
+        //        Console.WriteLine("CreateNote ICommand");
+        //        if (null == createNote)
+        //        {
+        //            createNote = new DelegateCommand(CheckAndInvokeCommand, CanExecuteCommandTrue);
+        //        }
+        //        return createNote;
+        //    }
+        //}
 
-        public void CheckAndInvokeCommand(object parameter)
+        public void CreateNote(object parameter)
         {
             Console.WriteLine("CheckAndInvokeCommand");
             if (TextToCreate == null)

@@ -29,7 +29,7 @@ namespace Notes.Views
         public void editNoteClicked(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("editNoteClicked");
-            
+
             NewTopic(TopicField.Text);
             NewText(TextField.Text);
             this.Close();
