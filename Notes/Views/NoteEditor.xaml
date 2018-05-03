@@ -13,7 +13,7 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,0,10">
-        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="449,145,0,0" VerticalAlignment="Top" Width="75" Command="{Binding EditNote}" Click="editNoteClicked"/>
+        <Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Margin="449,145,0,0" VerticalAlignment="Top" Width="75" Command="{Binding EditNote}" IsEnabled="False" Click="editNoteClicked"/>
         <StackPanel Height="96" Margin="30,25,20,0" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" Height="28">
                 <TextBlock Style="{StaticResource LabelStyle}" Text="Title:  " Height="18" Margin="0,5" Width="30"/>

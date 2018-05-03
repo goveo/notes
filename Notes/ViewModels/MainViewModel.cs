@@ -23,7 +23,6 @@ namespace Notes.ViewModels
             _execute = onExecuteMethod;
             _canExecute = onCanExecuteMethod;
         }
-
         public event EventHandler CanExecuteChanged
         {
             add
@@ -35,7 +34,6 @@ namespace Notes.ViewModels
                 CommandManager.RequerySuggested -= value;
             }
         }
-
         public bool CanExecute(object parameter)
         {
             return _canExecute.Invoke(parameter);
@@ -53,25 +51,20 @@ namespace Notes.ViewModels
         private DelegateCommand deleteAllNotesCommand;
 
         public NotesModel NotesArr { get; set; }
-
         public string TextToCreate { get; set; }
         public string TopicToCreate { get; set; }
         public bool IsImportantToCreate { get; set; }
         public DateTime DeadlineToCreate { get; set; }
-
         public string TextToEdit { get; set; }
         public string TopicToEdit { get; set; }
-
         public MainViewModel()
         {
             this.NotesArr = NotesModel.Current;
         }
-
         public bool CanExecuteCommandTrue(object parameter)
         {
             return true;
         }
-
         public ICommand ExitCommand
         {
             get
@@ -84,7 +77,6 @@ namespace Notes.ViewModels
                 return exitCommand;
             }
         }
-
         public ICommand DeleteAllNotesCommand
         {
             get
@@ -99,13 +91,11 @@ namespace Notes.ViewModels
                 return deleteAllNotesCommand;
             }
         }
-
         private void Exit(object parameter)
         {
             NotesArr.SaveNotes();
             Application.Current.Shutdown();
         }
-
         private void DeleteAllNotes(object parameter)
         {
             Console.WriteLine("DeleteAllNotes");
@@ -116,21 +106,6 @@ namespace Notes.ViewModels
             }
 
         }
-
-
-        //public ICommand CreateNote
-        //{
-        //    get
-        //    {
-        //        Console.WriteLine("CreateNote ICommand");
-        //        if (null == createNote)
-        //        {
-        //            createNote = new DelegateCommand(CheckAndInvokeCommand, CanExecuteCommandTrue);
-        //        }
-        //        return createNote;
-        //    }
-        //}
-
         public void CreateNote(object parameter)
         {
             Console.WriteLine("CheckAndInvokeCommand");

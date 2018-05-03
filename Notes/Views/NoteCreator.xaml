@@ -15,7 +15,7 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,0,10">
-        <Button Content="Create" HorizontalAlignment="Left" Margin="449,188,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateNote}" Click="createNoteClicked"/>
+        <Button x:Name="CreateButton" IsEnabled="False" Content="Create" HorizontalAlignment="Left" Margin="449,188,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreateNote}" Click="createNoteClicked"/>
         <StackPanel Height="96" Margin="30,25,20,0" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" Height="28">
                 <TextBlock Style="{StaticResource LabelStyle}" Text="Title:  " Height="18" Margin="0,5" Width="30"/>

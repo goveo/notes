@@ -149,7 +149,5 @@ namespace Notes.Models
             }
         }
         // Chain of responsibility end
-
     }
-
 }

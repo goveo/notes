@@ -28,13 +28,16 @@ namespace Notes.Views
         public static string TopicFieldText { get; set; }
         public static string TextFieldText { get; set; }
 
+        ButtonChecker buttonChecker;
+
         public NoteCreator()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
             DeadlinePicker.Text = DateTime.Today.ToShortDateString();
             DeadlinePicker.SelectedDate = DateTime.Today;
-            
+
+            buttonChecker = new ButtonChecker();
 
             Console.WriteLine("DeadlinePicker.Text : " + DeadlinePicker.Text);
             Console.WriteLine("DeadlinePicker.SelectedDate : " + DeadlinePicker.SelectedDate);
@@ -86,10 +89,12 @@ namespace Notes.Views
         private void TextChanged(object sender, RoutedEventArgs e)
         {
             TopicFieldText = ((TextBox)sender).Text;
+            buttonChecker.EnableButton(CreateButton, TopicFieldText, TextFieldText);
         }
         private void TitleChanged(object sender, RoutedEventArgs e)
         {
             TextFieldText = ((TextBox)sender).Text;
+            buttonChecker.EnableButton(CreateButton, TopicFieldText, TextFieldText);
         }
     }
 }

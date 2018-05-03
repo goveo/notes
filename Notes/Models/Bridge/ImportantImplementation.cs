@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Notes.Models
 {
-    public class ImportantImplementation : Implementor
+    public class ImportantImplementation : ActionImplementor
     {
         private Action<string> topic;
         private Action<string> text;

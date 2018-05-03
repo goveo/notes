@@ -41,38 +41,17 @@ namespace Notes.Views
             buttonChecker = new ButtonChecker();
         }
 
-        // Proxy
-        public class ButtonChecker : IButtonEnabler
-        {
-            ButtonEnabler btnEnabler = new ButtonEnabler();
-
-            public void EnableButton(Button button)
-            {
-                if (!String.IsNullOrEmpty(Topic) && !String.IsNullOrEmpty(Text))
-                {
-                    btnEnabler.EnableButton(button);
-                    Console.WriteLine("Button enabled");
-                }
-                else
-                {
-                    button.IsEnabled = false;
-                }
-            }
-        }
-        // Proxy
-
         private void TextChanged(object sender, RoutedEventArgs e)
         {
             Topic = ((TextBox)sender).Text;
-            buttonChecker.EnableButton(EditButton);
-            Console.WriteLine("Topic : " + Topic);
+            buttonChecker.EnableButton(EditButton, Topic, Text);
+            //Console.WriteLine("Topic : " + Topic);
         }
         private void TitleChanged(object sender, RoutedEventArgs e)
         {
             Text = ((TextBox)sender).Text;
-            buttonChecker.EnableButton(EditButton);
-            Console.WriteLine("Text : " + Text);
+            buttonChecker.EnableButton(EditButton, Topic, Text);
+            //Console.WriteLine("Text : " + Text);
         }
-
     }
 }

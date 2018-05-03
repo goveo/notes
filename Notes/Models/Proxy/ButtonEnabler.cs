@@ -9,7 +9,7 @@ namespace Notes.Models
 {
     public class ButtonEnabler : IButtonEnabler
     {
-        public void EnableButton(Button button)
+        public void EnableButton(Button button, string topic, string text)
         {
             button.IsEnabled = true;
         }

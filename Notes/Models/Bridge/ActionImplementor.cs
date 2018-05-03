@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Notes.Models
 {
-    abstract public class Implementor
+    abstract public class ActionImplementor
     {
         public abstract void SendNoteInfo(string topic, string text);
     }

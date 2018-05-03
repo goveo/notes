@@ -82,9 +82,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Proxy\ButtonChecker.cs" />
     <Compile Include="Models\Bridge\AbstractActionSender.cs" />
     <Compile Include="Models\Bridge\ActionSender.cs" />
-    <Compile Include="Models\Bridge\Implementor.cs" />
+    <Compile Include="Models\Bridge\ActionImplementor.cs" />
     <Compile Include="Models\Bridge\ImportantImplementation.cs" />
     <Compile Include="Models\Bridge\NotImportantImplementation.cs" />
     <Compile Include="Models\Chain Of Responsibility\DeleteHandler.cs" />
@@ -143,6 +144,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Models\Factory Method\ClassDiagram.cd" />
+    <None Include="Models\Proxy\ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -8,13 +8,11 @@ namespace Notes.Models
 {
     public class AbstractActionSender
     {
-        protected Implementor implementor;
-
-        public Implementor Implementor
+        protected ActionImplementor implementor;
+        public ActionImplementor Implementor
         {
             set { implementor = value; }
         }
-
         public virtual void SendNoteInfo(string topic, string text)
         {
             implementor.SendNoteInfo(topic, text);

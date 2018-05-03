@@ -9,6 +9,6 @@ namespace Notes.Models
 {
     interface IButtonEnabler
     {
-        void EnableButton(Button button);
+        void EnableButton(Button button, string topic, string text);
     }
 }

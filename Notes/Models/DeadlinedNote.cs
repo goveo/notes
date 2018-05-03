@@ -24,32 +24,13 @@ namespace Notes.Models
                 }
             }
         }
-
         public DeadlinedNote()
         {
         }
-
         public DeadlinedNote(string topic, string text, bool isImportant, DateTime deadline) : base(topic, text, isImportant)
         {
             this.deadline = deadline;
         }
-
-        //public override string GetFormattedNoteTime()
-        //{
-        //    bool isToday = deadline.Date - DateTime.Today == TimeSpan.FromDays(0);
-
-        //    string result = "deadline ";
-        //    if (isToday == true)
-        //    {
-        //        result =  result + this.deadline.ToShortTimeString();
-        //    }
-        //    else
-        //    {
-        //        result = result + this.deadline.ToShortDateString();
-        //    }
-        //    return result;
-        //}
-
         public void SetDetailInfo(IVisitor visitor)
         {
             this.DetailInfo = visitor.VisitDeadlinedNote(this);
