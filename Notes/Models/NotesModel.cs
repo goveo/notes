@@ -114,39 +114,9 @@ namespace Notes.Models
             Console.WriteLine(this.Count);
             foreach (Note note in new System.Collections.ArrayList(this))
             {
-                h1.Delete(note);
+                h1.Delete(note, Current);
             }
             Console.WriteLine(this.Count);
-        }
-
-        public class DeleteImportantHandler : DeleteHandler
-        {
-            public override void Delete(Note note)
-            {
-                if (note.IsImportant)
-                {
-                    Console.WriteLine("NOTE WITH TOPIC '{0}' IS IMPORTANT, I CAN'T DELETE IT", note.Topic);
-                }
-                else if (successor != null)
-                {
-                    successor.Delete(note);
-                }
-            }
-        }
-
-        public class DeleteDefaultHandler : DeleteHandler
-        {
-            public override void Delete(Note note)
-            {
-                if (!note.IsImportant)
-                {
-                    Current.Remove(note);
-                }
-                else if (successor != null)
-                {
-                    successor.Delete(note);
-                }
-            }
         }
         // Chain of responsibility end
     }

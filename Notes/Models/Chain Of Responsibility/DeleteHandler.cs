@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,6 @@ namespace Notes.Models
             this.successor = successor;
         }
 
-        public abstract void Delete(Note note);
+        public abstract void Delete(Note note, NotesModel Current);
     }
-    // another classes near NotesModel.DeleteAllNotes()
 }

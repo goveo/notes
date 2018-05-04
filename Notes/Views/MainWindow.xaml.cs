@@ -73,6 +73,10 @@ namespace Notes.Views
                 {
                     ((MainViewModel)DataContext).DeleteNote(selected);
                 }
+                else
+                {
+                    return;
+                }
             }
             else
             {
@@ -105,7 +109,6 @@ namespace Notes.Views
                     Console.WriteLine("selected.TimeToShow : {0}", selected.TimeToShow);
                     Console.WriteLine("selected.IsImportant : {0}", selected.IsImportant);
                     Console.WriteLine("selected.DetailInfo : {0}", selected.DetailInfo);
-
                 }
                 catch (Exception exception)
                 {

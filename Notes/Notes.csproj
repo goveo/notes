@@ -82,6 +82,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Chain Of Responsibility\DeleteDefaultHandler.cs" />
+    <Compile Include="Models\Chain Of Responsibility\DeleteImportantHandler.cs" />
     <Compile Include="Models\Proxy\ButtonChecker.cs" />
     <Compile Include="Models\Bridge\AbstractActionSender.cs" />
     <Compile Include="Models\Bridge\ActionSender.cs" />
@@ -144,8 +146,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
+    <None Include="Models\Bridge\ClassDiagram.cd" />
+    <None Include="Models\Chain Of Responsibility\ClassDiagram.cd" />
+    <None Include="Models\Decorator\ClassDiagram.cd" />
     <None Include="Models\Factory Method\ClassDiagram.cd" />
     <None Include="Models\Proxy\ClassDiagram.cd" />
+    <None Include="Models\State\ClassDiagram.cd" />
+    <None Include="Models\Visitor\ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -88,12 +88,12 @@ namespace Notes.Views
 
         private void TextChanged(object sender, RoutedEventArgs e)
         {
-            TopicFieldText = ((TextBox)sender).Text;
+            TextFieldText = ((TextBox)sender).Text;
             buttonChecker.EnableButton(CreateButton, TopicFieldText, TextFieldText);
         }
         private void TitleChanged(object sender, RoutedEventArgs e)
         {
-            TextFieldText = ((TextBox)sender).Text;
+            TopicFieldText = ((TextBox)sender).Text;
             buttonChecker.EnableButton(CreateButton, TopicFieldText, TextFieldText);
         }
     }

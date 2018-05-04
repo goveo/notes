@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Notes.Models.DeleteHandler">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeleteDefaultHandler">
+    <Position X="0.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteDefaultHandler.cs</FileName>
+      <NewMemberFileName>Models\Chain Of Responsibility\DeleteImportantHandler.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeleteImportantHandler">
+    <Position X="3.75" Y="3.75" Width="2" />
+    <InheritanceLine Type="Notes.Models.DeleteHandler" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="2.497" />
+        <Point X="3.25" Y="3.375" />
+        <Point X="4.75" Y="3.375" />
+        <Point X="4.75" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteImportantHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

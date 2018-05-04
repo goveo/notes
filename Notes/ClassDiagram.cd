@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Notes.ViewModels.DelegateCommand" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAABEgIEAFAAAwEAAAAAAQAIgAAIABAAAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.AbstractActionSender" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Bridge\AbstractActionSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.ActionImplementor" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Bridge\ActionImplementor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.ActionSender" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Bridge\ActionSender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.ImportantImplementation" Collapsed="true">
+    <Position X="3" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Bridge\ImportantImplementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.NotImportantImplementation" Collapsed="true">
+    <Position X="5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Bridge\NotImportantImplementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeleteDefaultHandler" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteDefaultHandler.cs</FileName>
+      <NewMemberFileName>Models\Chain Of Responsibility\DeleteImportantHandler.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeleteHandler" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeleteImportantHandler" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Chain Of Responsibility\DeleteImportantHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.NoteDecorator" Collapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Decorator\NoteDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.UppercaseDecorator" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Decorator\UppercaseDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DeadlinedNoteCreator" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Factory Method\DeadlinedNoteCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DefaultNoteCreator" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Factory Method\DefaultNoteCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.NoteCreator" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Factory Method\NoteCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.ButtonChecker" Collapsed="true">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Proxy\ButtonChecker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.ButtonEnabler" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Proxy\ButtonEnabler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.CreatedNoteState" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\State\CreatedNoteState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.EditedNoteState" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\State\EditedNoteState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.DetailInfoVisitor" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Visitor\DetailInfoVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Notes.Models.DeadlinedNote" Collapsed="true">
+    <Position X="10.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAA=</HashCode>
+      <FileName>Models\DeadlinedNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.DefaultNote" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DefaultNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.Note" Collapsed="true">
+    <Position X="10.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABCAAAAAAAAAAAgAAAEAEAgAAAAAAIAAAADCEQgQA=</HashCode>
+      <FileName>Models\Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notes.Models.NotesModel" Collapsed="true">
+    <Position X="9.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAQAAAAAAAAEQAAGAAAQEhAAAAAAAAAAEAABAAAA=</HashCode>
+      <FileName>Models\NotesModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Notes.Models.IButtonEnabler" Collapsed="true">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Proxy\IButtonEnabler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Notes.Models.INoteState" Collapsed="true">
+    <Position X="5.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\State\INoteState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Notes.Models.IVisitor" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Visitor\IVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -109,15 +109,15 @@ namespace Notes.ViewModels
         public void CreateNote(object parameter)
         {
             Console.WriteLine("CheckAndInvokeCommand");
-            if (TextToCreate == null)
+            if (TextToCreate == null || TextToCreate == "")
             {
-                throw new ArgumentException("Text is null");
+                return;
             }
-            if (TopicToCreate == null)
+            if (TopicToCreate == null || TopicToCreate == "")
             {
-                throw new ArgumentException("Topic is null");
+                return;
             }
- 
+            
             NotesArr.CreateNote(TopicToCreate, TextToCreate, IsImportantToCreate, DeadlineToCreate);
            
             NotesArr.SaveNotes();
